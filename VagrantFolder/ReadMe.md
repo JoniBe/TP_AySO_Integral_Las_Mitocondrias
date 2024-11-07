@@ -33,3 +33,9 @@
     -  ssh vagrant@production --> Para ir a la máquina de producción (Fedora)
    
     -  ssh vagrant@testing --> Para ir a la máquina de testing (ubuntu)
+
+- INFO DISCOS -
+
+  Dentro de la carpeta de script en ambas máquinas se encuentra un script llamado "script_discos.sh" que particiona los discos y crea los LVMs correspondientes. Ya tienen permiso de ejecución, solo hay que ejecutarlos.
+
+  Ejecutarlos con el siguiente comando (Opcional): ./script_discos.sh
