@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       cd /home/vagrant/script_folders
       git clone https://github.com/giulianolol/script.git
       cd /home/vagrant/script_folders/script
-      chmod +x cross_keys_scripts.sh
+      chmod +x script_cross_visudo_hosts.sh
 
     SHELL
     end
@@ -79,7 +79,7 @@ Vagrant.configure("2") do |config|
       cd /home/vagrant/script_folders
       sudo git clone https://github.com/giulianolol/script_fedora.git
       cd /home/vagrant/script_folders/script_fedora
-      sudo chmod +x script_pass_cross.sh
+      sudo chmod +x script_cross_visudo_hosts.sh
     
     SHELL
   end
