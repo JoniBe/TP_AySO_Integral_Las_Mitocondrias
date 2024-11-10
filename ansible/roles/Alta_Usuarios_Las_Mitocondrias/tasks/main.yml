@@ -1,0 +1,16 @@
+---
+- name: Crear usuarios para cada miembro del grupo
+  user:
+    name: "{{ item.nombre }}"
+    groups: "{{ item.grupos }}"
+    password: "{{ 'vagrant' | password_hash('sha512') }}"
+  with_items:
+    - { nombre: "usuario1", grupos: "G_R1,<Nombre-Grupo>" }
+    - { nombre: "usuario2", grupos: "G_R2,<Nombre-Grupo>" }
+    - { nombre: "usuario3", grupos: "G_R3,<Nombre-Grupo>" }
+    - { nombre: "usuario4", grupos: "G_R4,<Nombre-Grupo>" }
+    - { nombre: "usuario5", grupos: "G_R5,<Nombre-Grupo>" }
+    - { nombre: "usuario6", grupos: "G_R6,<Nombre-Grupo>" }
+
+    # Agrega más usuarios según sea necesario
+

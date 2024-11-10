@@ -1,0 +1,13 @@
+---
+- name: Crear directorio para archivo de datos
+  file:
+    path: /tmp/Grupo
+    state: directory
+    owner: vagrant
+
+- name: Crear archivo datos.txt con información del grupo
+  template:
+    src: datos.txt.j2
+    dest: /tmp/Grupo/datos.txt
+    owner: vagrant
+

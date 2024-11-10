@@ -1,0 +1,11 @@
+Nombre Grupo: {{ grupo_nombre }}
+División: {{ division }}
+Fecha: {{ ansible_date_time.date }}
+-------------------------
+Distribución: {{ ansible_distribution }}
+Cantidad de Cores: {{ ansible_processor_cores }}
+-------------------------
+{% for integrante in integrantes %}
+R{{ loop.index }}: Nombre: {{ integrante.nombre }} Apellido: {{ integrante.apellido }}
+{% endfor %}
+
