@@ -1,0 +1,10 @@
+---
+- name: Configuración de Servidores del TP Integral
+  hosts: servidores
+  become: yes
+
+  roles:
+    - TP_INI
+    - Alta_Usuarios_Las_Mitocondrias
+    - Sudoers_Las_Mitocondrias
+    - Instala-tools_Las_Mitocondrias
