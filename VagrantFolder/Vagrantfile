@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
       git clone https://github.com/upszot/UTN-FRA_SO_onBording.git 
       git clone https://github.com/upszot/UTN-FRA_SO_Ansible.git
       git clone https://github.com/upszot/UTN-FRA_SO_Docker.git
-      git clone https://github.com/JoniBe/TP_AySO_Integral_Las_Mitocondrias
+      git clone --branch dev https://github.com/JoniBe/TP_AySO_Integral_Las_Mitocondrias
       cd ..
       mkdir -p /home/vagrant/script_folders
       cd /home/vagrant/script_folders
