@@ -1,0 +1,11 @@
+---
+grupo_nombre: "Las Mitocondrias"
+division: "División 1"
+integrantes:
+  - nombre: "Juan"
+    apellido: "Pérez"
+  - nombre: "Ana"
+    apellido: "Gómez"
+  - nombre: "Luis"
+    apellido: "Martínez"
+

@@ -1,0 +1,29 @@
+---
+# Crear los grupos necesarios
+- name: Crear grupos para los roles
+  group:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - G_R1
+    - G_R2
+    - G_R3
+    - G_R4
+    - G_R5
+    - G_R6
+    - "{{ nombre_grupo }}"
+
+# Crear usuarios para cada miembro del grupo y asignarlos a sus grupos
+- name: Crear usuarios para cada miembro del grupo
+  user:
+    name: "{{ item.nombre }}"
+    groups: "{{ item.grupos }}"
+    password: "{{ 'vagrant' | password_hash('sha512') }}"
+  with_items:
+    - { nombre: "usuario1", grupos: "G_R1,{{ nombre_grupo  }}" }
+    - { nombre: "usuario2", grupos: "G_R2,{{ nombre_grupo  }}" }
+    - { nombre: "usuario3", grupos: "G_R3,{{ nombre_grupo  }}" }
+    - { nombre: "usuario4", grupos: "G_R4,{{ nombre_grupo  }}" }
+    - { nombre: "usuario5", grupos: "G_R5,{{ nombre_grupo  }}" }
+    - { nombre: "usuario6", grupos: "G_R6,{{ nombre_grupo  }}" }
+

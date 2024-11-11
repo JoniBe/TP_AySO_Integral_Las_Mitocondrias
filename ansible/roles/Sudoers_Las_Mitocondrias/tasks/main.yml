@@ -1,0 +1,9 @@
+---
+- name: Configurar sudo sin contraseña para el grupo
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%{{ nombre_grupo }}'
+    line: '%{{ nombre_grupo }} ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
