@@ -62,7 +62,7 @@ docker push USUARIO/tp-313_las-mitocondrias
 en la carpeta docker donde se encuentra docker-compose.yml levantar servidor en segundo plano
 
 ```bash
-docker-compose.yml up -d
+docker-compose up -d
 ```
 
 
