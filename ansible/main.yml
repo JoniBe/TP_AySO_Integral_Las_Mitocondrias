@@ -2,6 +2,9 @@
 - name: Configuración de Servidores del TP Integral
   hosts: servidores
   become: yes
+  
+  vars:
+    nombre_grupo: "Las_Mitocondrias"
 
   roles:
     - TP_INI

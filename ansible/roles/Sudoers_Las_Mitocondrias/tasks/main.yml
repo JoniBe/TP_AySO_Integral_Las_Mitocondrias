@@ -3,7 +3,7 @@
   lineinfile:
     path: /etc/sudoers
     state: present
-    regexp: '^%<Nombre-Grupo>'
-    line: '%<Nombre-Grupo> ALL=(ALL) NOPASSWD: ALL'
+    regexp: '^%{{ nombre_grupo }}'
+    line: '%{{ nombre_grupo }} ALL=(ALL) NOPASSWD: ALL'
     validate: 'visudo -cf %s'
 
