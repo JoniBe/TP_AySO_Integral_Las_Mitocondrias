@@ -48,11 +48,17 @@ Les debería salir lo siguiente:
 | ---------- | --- | -------- | ------- | ---- |
 | USUARIO/tp-313_las-mitocondrias | latest | a48e6518f9e7 | 21 hours ago | 197MB |
 
-### Subir la imagen a Docker Hub
+### Subir la imagen a Docker Hiub
 
 ```bash
 docker push USUARIO/tp-313_las-mitocondrias
 ```
 
 
+### Levantar servidor docker-compose
 
+en la carpeta docker donde se encuentra docker-compose.yml levantar servidor en segundo plano
+
+```bash
+docker-compose.yml up -d
+```
