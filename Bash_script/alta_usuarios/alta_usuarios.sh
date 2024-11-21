@@ -1,26 +1,45 @@
 #!/bin/bash
+clear
 
-# Archivo donde se guardarán los usuarios creados
-agregar_usuarios="Lista_Usuarios.txt"
+LISTA=Lista_Usuarios.txt
 
-# Pedir el nombre del usuario
-echo "Introduce el nombre del nuevo usuario:"
-read username
-
-# Verificar si el usuario ya existe
-if id "$username" &>/dev/null; then
-    echo "El usuario $username ya existe."
-else
-    # Crear el usuario con un directorio home y una shell predeterminada
-    sudo useradd -m -s /bin/bash "$username"
-
-    # Solicitar la contraseña para el nuevo usuario
-    echo "Introduce la contraseña para el usuario $username:"
-    sudo passwd "$username"
-
-    # Agregar el nombre del usuario al archivo de texto
-    echo "$username" >> "$archivo_usuarios"
-    echo "Usuario $username creado con éxito y guardado en $archivo_usuarios."
+if [[ -z $LISTA ]]; then
+    echo "Error: Debes proporcionar un archivo de lista de usuarios como parámetro."
+    exit 1
 fi
 
-echo "Proceso completado."
+if [[ ! -f $LISTA ]]; then
+    echo "Error: El archivo $LISTA no existe."
+    exit 1
+fi
+
+ANT_IFS=$IFS
+IFS=$'\n'
+
+for LINEA in $(cat $LISTA | grep -v '^#'); do
+    # Separar campos por coma
+    USUARIO=$(echo $LINEA | awk -F ',' '{print $1}')
+    GRUPO=$(echo $LINEA | awk -F ',' '{print $2}')
+    DIR_HOME=$(echo $LINEA | awk -F ',' '{print $3}')
+
+    # Crear grupo si no existe
+    if ! grep -q "^$GRUPO:" /etc/group; then
+        echo "Creando grupo $GRUPO..."
+        sudo groupadd $GRUPO
+    fi
+
+    # Crear usuario con grupo y directorio home
+    echo "Creando usuario $USUARIO con grupo $GRUPO y home $DIR_HOME..."
+    sudo useradd -m -s /bin/bash -g $GRUPO -d $DIR_HOME $USUARIO
+
+    # Configurar permisos del directorio home
+    if [[ -d $DIR_HOME ]]; then
+        echo "Configurando permisos para $DIR_HOME..."
+        sudo chown $USUARIO:$GRUPO $DIR_HOME
+        sudo chmod 750 $DIR_HOME
+    fi
+done
+
+IFS=$ANT_IFS
+
+echo "Proceso de creación de usuarios finalizado."
